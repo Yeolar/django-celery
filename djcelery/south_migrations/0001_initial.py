@@ -40,6 +40,7 @@ class Migration(SchemaMigration):
         # Adding model 'CrontabSchedule'
         db.create_table('djcelery_crontabschedule', (
                 ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+                ('second', self.gf('django.db.models.fields.CharField')(default='*', max_length=64)),
                 ('minute', self.gf('django.db.models.fields.CharField')(default='*', max_length=64)),
                 ('hour', self.gf('django.db.models.fields.CharField')(default='*', max_length=64)),
                 ('day_of_week', self.gf('django.db.models.fields.CharField')(default='*', max_length=64)),))
@@ -131,6 +132,7 @@ class Migration(SchemaMigration):
             'hour': ('django.db.models.fields.CharField', [], {'default': "'*'", 'max_length': '64'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'minute': ('django.db.models.fields.CharField', [], {'default': "'*'", 'max_length': '64'})
+            'second': ('django.db.models.fields.CharField', [], {'default': "'*'", 'max_length': '64'})
         },
         'djcelery.intervalschedule': {
             'Meta': {'object_name': 'IntervalSchedule'},

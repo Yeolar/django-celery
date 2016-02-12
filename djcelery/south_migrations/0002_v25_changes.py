@@ -68,6 +68,7 @@ class Migration(SchemaMigration):
             'hour': ('django.db.models.fields.CharField', [], {'default': "'*'", 'max_length': '64'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'minute': ('django.db.models.fields.CharField', [], {'default': "'*'", 'max_length': '64'})
+            'second': ('django.db.models.fields.CharField', [], {'default': "'*'", 'max_length': '64'})
         },
         'djcelery.intervalschedule': {
             'Meta': {'object_name': 'IntervalSchedule'},

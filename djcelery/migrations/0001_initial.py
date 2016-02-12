@@ -21,6 +21,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(
                     auto_created=True, primary_key=True,
                     serialize=False, verbose_name='ID')),
+                ('second', models.CharField(
+                    default='*', max_length=64, verbose_name='second')),
                 ('minute', models.CharField(
                     default='*', max_length=64, verbose_name='minute')),
                 ('hour', models.CharField(
@@ -34,8 +36,8 @@ class Migration(migrations.Migration):
             ],
             options={
                 'ordering': [
-                    'month_of_year', 'day_of_month',
-                    'day_of_week', 'hour', 'minute'],
+                    'month_of_year', 'day_of_month', 'day_of_week',
+                    'hour', 'minute', 'second'],
                 'verbose_name': 'crontab',
                 'verbose_name_plural': 'crontabs',
             },
