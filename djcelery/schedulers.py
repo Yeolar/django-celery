@@ -229,7 +229,7 @@ class DatabaseScheduler(Scheduler):
             entries.setdefault(
                 'celery.backend_cleanup', {
                     'task': 'celery.backend_cleanup',
-                    'schedule': schedules.crontab('0', '4', '*'),
+                    'schedule': schedules.crontab('0', '0', '4', '*'),
                     'options': {'expires': 12 * 3600},
                 },
             )

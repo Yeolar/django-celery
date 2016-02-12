@@ -134,6 +134,7 @@ class IntervalSchedule(models.Model):
 
 @python_2_unicode_compatible
 class CrontabSchedule(models.Model):
+    second = models.CharField(_('second'), max_length=64, default='*')
     minute = models.CharField(_('minute'), max_length=64, default='*')
     hour = models.CharField(_('hour'), max_length=64, default='*')
     day_of_week = models.CharField(
@@ -149,11 +150,12 @@ class CrontabSchedule(models.Model):
     class Meta:
         verbose_name = _('crontab')
         verbose_name_plural = _('crontabs')
-        ordering = ['month_of_year', 'day_of_month',
-                    'day_of_week', 'hour', 'minute']
+        ordering = ['month_of_year', 'day_of_month', 'day_of_week',
+                    'hour', 'minute', 'second']
 
     def __str__(self):
-        return '{0} {1} {2} {3} {4} (m/h/d/dM/MY)'.format(
+        return '{0} {1} {2} {3} {4} {5} (s/m/h/d/dM/MY)'.format(
+            cronexp(self.second),
             cronexp(self.minute),
             cronexp(self.hour),
             cronexp(self.day_of_week),
@@ -163,7 +165,8 @@ class CrontabSchedule(models.Model):
 
     @property
     def schedule(self):
-        return schedules.crontab(minute=self.minute,
+        return schedules.crontab(second=self.second,
+                                 minute=self.minute,
                                  hour=self.hour,
                                  day_of_week=self.day_of_week,
                                  day_of_month=self.day_of_month,
@@ -171,7 +174,8 @@ class CrontabSchedule(models.Model):
 
     @classmethod
     def from_schedule(cls, schedule):
-        spec = {'minute': schedule._orig_minute,
+        spec = {'second': schedule._orig_second,
+                'minute': schedule._orig_minute,
                 'hour': schedule._orig_hour,
                 'day_of_week': schedule._orig_day_of_week,
                 'day_of_month': schedule._orig_day_of_month,
