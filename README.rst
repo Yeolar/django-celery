@@ -2,6 +2,8 @@
  django-celery - Celery Integration for Django
 ===============================================
 
+branch: sec_crontab based on v3.1.17, support second crontab.
+
 .. image:: http://cloud.github.com/downloads/celery/celery/celery_128.png
 
 :Version: 3.1.17
